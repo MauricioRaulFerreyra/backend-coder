@@ -1,0 +1,33 @@
+[
+  {
+    "id": 4,
+    "timestamp": 1634940040213,
+    "productos": [
+      {
+        "id": 4,
+        "timestamp": 1634932678963,
+        "nombre": "prueba postman",
+        "descripcion": "prueba postman",
+        "codigo": "1",
+        "thumbail": "foto prueba",
+        "precio": "500",
+        "stock": "10"
+      }
+    ]
+  },
+  {
+    "id": 3,
+    "timestamp": 1634940018345,
+    "productos": []
+  },
+  {
+    "id": 4,
+    "timestamp": 1634940040213,
+    "productos": []
+  },
+  {
+    "id": 5,
+    "timestamp": 1634943727855,
+    "productos": []
+  }
+]

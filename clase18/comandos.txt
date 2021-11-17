@@ -1,0 +1,45 @@
+// Ver bases de datos show dbs
+//Usar y crear base de datos use nombrebasededatos //Eliminar bases de datos db.dropDatabase()
+
+// Crear Coleccion db.createCollection("nombre coleccion") db.nombreColeccion.stats() -> Mostrar informacion general de la coleccion db.nombreColeccion.storageSize() -> Mostrar tamaño de la coleccion db.nombreColeccion.totalIndexSize() -> tamaño total de todos los índices de la colección. db.nombreColeccion.renameCollection
+Crear
+db.users.insertOne({name:"Mauricio"}) -> Crear un documento.
+db.users.insert({}) -> Crear un documento 
+db.users.insert([{},{}]) -> Crear mas de un documento.
+db.users.insert({date:ISODate()}) -> Crear documento con propiedad tipo fecha.
+Leer
+db.users.findOne() -> Devuelve el primer Documento.
+db.users.find() -> Devuelve todos los documentos.
+db.users.find().pretty() -> Devuelve todos los documentos en un formato mas legible. 
+db.users.find({name:"Mauricio", age:39}) -> Devuelve los documentos que coincida con el objeto.
+Cantidad/Contador
+db.users.count() -> Devuelve el numero de documentos que hay dentro de la colleccion.
+db.users.count({name:"Mauricio"}) -> Devuelve el numero de documentos que hay dentro de la colleccion, que coincida con el filtro.
+Filtros
+db.users.find({year:1982, name:"Mauricio"}) -> Devuelve los docmentos que coincida con el objeto.
+db.users.find({$and:[{year:1982}, {name:"Mauricio"}]}) => Filtra con operador condicional AND 
+db.users.find({$or:[{year:1982}, {name:"Mauricio"}]}) => Filtra con operador condicional OR 
+db.users.find({"year": {$lt:1960}}) -> Devuelve los valores menores al valor especificado. 
+db.users.find({"year": {$lte:1998}}) -> Devuelve los valores menores o iguales al valor especificado 
+db.users.find({"year": {$ne:1998}}) -> Devuelve los valores que no sean iguales a el valor especificado. 
+db.users.find({"year": {$gt:1970}}) -> Devuelve los valores mayores al valor especificado. 
+db.users.find({"year": {$gte:1975}}) -> Devuelve los valores mayores o iguales al valor especificado. 
+db.users.find().limit(5) -> Devuelve los primeros 5 docuemntos.
+db.users.find({}, {"name":3, "year":3}) -> Muestra unicamente los campos especificados en el filtro.
+Sort Limit Skip
+db.users.find().limit(5) -> Devuelve los primeros 5 documentos. 
+db.users.find().sort({name:-1}) -> Devuelve la informacion invertida segun el filtro especificado. 
+db.users.find().skip(3) -> Se salta 3 Documentos y devuelve el resto.
+Actualizar/Update
+db.users.update({"_id" : ObjectId("617ac9d8cb2c918e0ef1fe5d")},{name:"Mauricio","year":1982}) -> Actualiza todo el documento segun el id especificado por el objeto que se pasa como segundo argumento. 
+db.users.update({"name":"Jorge"}, {$set:{"name":"Camilo Lindarte"}}) -> Actualiza el campo que se setea en el parametro 2. 
+db.users.updateOne({"_id" : ObjectId("617ac9d8cb2c918e0ef1fe5d")}, {$set:{"year":2030}}) -> Actualiza un campo del documento segun el filtro.
+db.user.updateMany({"name":"Camilo Lindarte"}, {$set:{"namer":"coderNew"}}) -> Actualiza todos los campos del documentos que macheen con la condicion del filtro,
+db.users.update({"_id" : ObjectId("617ac9d8cb2c918e0ef1fe5d")}, {$currentDate:{"lastModified":true}}) -> Actualiza la fecha de la ultima modificacion
+db.users.update({"_id" : ObjectId("617ac9d8cb2c918e0ef1fe5d")}, {$rename:{"year":"new_yeaar"}}) -> Actualiza el nombre del campo especificado.
+Borrar/Delete
+db.users.deleteMany({"name":"Camilo Lindarte"}) -> Elimina todos los documentos que macheen con el filtro. db.users.deleteOne({"name":"Rahul"}) -> Elimina solo un documento que machee con el filtro.
+db.users.deleteMany({}) -> Elimina todos los documentos sin borrar la coleccion
+Usuarios
+db.createUser({user:"lector", pwd:"123456", roles:[{role:"read", db:"coderTwo"}]}) -> Creamos un usuario que solo tenga permisos para leer coleccion y documentos dentro de la base de datos coderTwo
+db.createUser( { user: "lector_2", pwd: "123456", roles:[{role: "read" , db:"coderData"}] })
